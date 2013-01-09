@@ -1,3 +1,8 @@
+<!---
+Presentation done for team at work on January 9th, 2013.
+Meant to be used with https://github.com/adamzap/landslide
+-->
+
 # Git Tips
 
 ---
