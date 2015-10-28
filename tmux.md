@@ -1,5 +1,4 @@
 <!---
-Presentation done for team 
 Meant to be used with https://github.com/adamzap/landslide
 -->
 
@@ -7,7 +6,7 @@ Meant to be used with https://github.com/adamzap/landslide
 
 Patrick Marchwiak
 
-February 19, 2013
+October 2015
 
 ---
 
@@ -21,15 +20,18 @@ February 19, 2013
 
 # Terminal Multiplexers
 
-<img src="http://tmux.sourceforge.net/tmux5.png" height="500">
+<img src="https://tmux.github.io/ss-tmux2.png" height="500">
 
 ---
 
 # Terminal Multiplexers
 
-Wikipedia:
+A terminal multiplexer is an application that can be used to multiplex several virtual consoles, allowing a user to access multiple separate terminal sessions inside a single terminal window or remote terminal session.
 
->A terminal multiplexer is a software application that can be used to multiplex several virtual consoles, allowing a user to access multiple separate terminal sessions inside a single terminal window or remote terminal session. It is useful for dealing with multiple programs from a command line interface, and for separating programs from the Unix shell that started the program.
+
+Useful for dealing with multiple programs from a CLI, and for separating programs from the Unix shell that started the program.
+
+(From [Wikipedia](http://https://en.wikipedia.org/wiki/Terminal_multiplexer))
 
 ---
 
@@ -51,18 +53,17 @@ Has anyone used `screen`?
 
 # tmux
 
-From [http://tmux.sourceforge.net/](http://tmux.sourceforge.net/):
->tmux is intended to be a modern, BSD-licensed alternative to programs such as GNU screen. Major features include:
 
->A powerful, consistent, well-documented and easily scriptable command interface.
-A window may be split horizontally and vertically into panes.
+`tmux` is intended to be a modern, BSD-licensed alternative to programs such as GNU screen. Major features include:
+
+- A powerful, consistent, well-documented and easily scriptable command interface.
+- A window may be split horizontally and vertically into panes.
 Panes can be freely moved and resized, or arranged into preset layouts.
-Support for UTF-8 and 256-colour terminals.
-Copy and paste with multiple buffers.
-Interactive menus to select windows, sessions or clients.
-Change the current window by searching for text in the target.
-Terminal locking, manually or after a timeout.
-A clean, easily extended, BSD-licensed codebase, under active development.
+- Interactive menus to select windows, sessions or clients.
+- Change the current window by searching for text in the target.
+- A clean, easily extended, BSD-licensed codebase, under active development.
+
+(From [http://tmux.sourceforge.net/](http://tmux.sourceforge.net/))
 
 ---
 
@@ -70,7 +71,7 @@ A clean, easily extended, BSD-licensed codebase, under active development.
 
 On Mac use [`homebrew`](http://mxcl.github.com/homebrew/):
 
-    marchwiakmd$ brew install tmux
+    me@mbp:~$ brew install tmux
 
 ---
 
@@ -78,14 +79,14 @@ On Mac use [`homebrew`](http://mxcl.github.com/homebrew/):
 
 Start up tmux:
 
-    marchwiakmd$ tmux
-    
+    me@mbp:~$ tmux
+
 Attach to existing session:
 
-    marchwiakmd$ tmux attach
-   
+    me@mbp:~$ tmux attach
+
 ---
- 
+
 # Usage - Window Management
 
 Create a new window: **C-a c**
@@ -96,9 +97,9 @@ Switch to the next window: **C-a n**
 
 Switch to the previous window: **C-a p**
 
-Switch to window # 2: **C-a 2**
+Switch to window the 2nd window: **C-a 2**
 
-Rename window: **C-a ,**  then type the new name, press Enter 
+Rename window: **C-a ,**  then type the new name, press Enter
 
 ---
 
@@ -122,20 +123,20 @@ Close window: **C-c**
 Kill window (when not responding): **C-a &**
 
 ___
- 
+
 # Configuration
 
 Unlike `screen`, `tmux` has nice defaults.
 
 Some recommended tweaks to add to your `~/.tmux.conf`:
-    
+
     # Use 1 as the first index
     set -g base-index 1
-	
+
     # Replace C-b as the default, use what screen does
 	set-option -g prefix C-a
-    
-    # Just click it
+
+    # Just click it (better mouse support)
 	set-option -g mouse-select-pane on
     set-option -g mouse-select-window on
     set-option -g mouse-resize-pane on
@@ -143,28 +144,32 @@ Some recommended tweaks to add to your `~/.tmux.conf`:
 ---
 
 # Configuration
-    
+
     # Scroll your way into copy mode (scrollback buffer)
     # and select text for copying with the mouse
     setw -g mode-mouse on
-	
+
     # Remove delay between prefix and command
     set -s escape-time 0
-	
+
     # command sequence for nested tmux sessions
     bind-key a send-prefix
-	
+
     # Fix wacky colors
     set -g default-terminal "screen-256color"
-    
+
     # Use intuitive bindings for splitting panes
     bind | split-window -h
     bind - split-window -v
-    
----
-
-# Appendix
-
-iTerm2 - Copy and paste doesn't work correctly. Hold Option when selecting text.
 
 ---
+
+# Misc
+
+- When used for session persistence on a server, tmux must be installed there.
+
+- Plugins available at [https://github.com/tmux-plugins](https://github.com/tmux-plugins)
+
+ - [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) persists your environment across system restarts.
+
+- Copy and paste doesn't work correctlyin iTerm2. Hold Option when selecting text.
